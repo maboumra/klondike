@@ -261,7 +261,9 @@ class Card extends PositionComponent with DragCallbacks {
         pile!.removeCard(this);
         dropPiles.first.acquireCard(this);
         if (attachedCards.isNotEmpty) {
-          attachedCards.forEach((card) => dropPiles.first.acquireCard(card));
+          for (var card in attachedCards) {
+            dropPiles.first.acquireCard(card);
+          }
           attachedCards.clear();
         }
         return;
@@ -269,7 +271,9 @@ class Card extends PositionComponent with DragCallbacks {
     }
     pile!.returnCard(this);
     if (attachedCards.isNotEmpty) {
-      attachedCards.forEach((card) => pile!.returnCard(card));
+      for (var card in attachedCards) {
+        pile!.returnCard(card);
+      }
       attachedCards.clear();
     }
   }
